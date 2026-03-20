@@ -1,0 +1,17 @@
+# Instructions concernant l'ajout d'un niveau de log
+## Contexte
+Le projet QSHONI ne permet pas actuellement de configurer les types de message envoyés dans la log de l'IBMi. Par défaut, tous les messages sont envoyés, ce qui peut rendre la log difficile à lire et à analyser.
+Le projet est constitué de chaînes d'appel de programmes commançant par une commande qui appelle un programme CLLE. Pour savoir quel est le programme appelé par la commande, il faut se référer au programme qui compile les objets du projets : SRCBLDC.CLP.
+**Tests** : il n'est pas possible de tester les modifications dans l'environnement de développement.
+## Objectif
+L'objectif de cette tâche est d'ajouter une fonctionnalité permettant de configurer les types de messages envoyés par les différents programmes avec la commande SNDPGMMSG. Les message de type *ESCAPE seront toujours envoyés quel que soit le paramétrage, tandis que les messages de type *INFO, *COMP ou *DIAG seront envoyés uniquement si ces types de message sont activés. Pour information, le type *ESCAPE provoque un arrêt immédiat du traitement.
+## Stratégie de mise en œuvre
+* On ajoute dans les commandes un paramètre suplémentaire qui peut prendre plusieurs valeurs (*NONE, *ALL, *INFO, *COMP, *DIAG) pour configurer les types de message à envoyer. Les valeurs *NONE et *ALL permettront respectivement de n'envoyer aucun message ou tous les messages, tandis que les autres valeurs permettront d'envoyer uniquement les types de message spécifiés. *NONE sera la valeur par défaut. Si *ALL ou *NONE est sélectionné, il ne peut y avoir d'autre valeur sélectionnée. Si *INFO, *COMP ou *DIAG est sélectionné, il est possible de sélectionner plusieurs valeurs de ces trois valeurs. Si les trois valeurs sont sélectionnées, cela correspond à *ALL.
+* On crée un wrapper QSNDPGMMSG de la commande SNDPGMMSG qui prendra en compte ce nouveau paramètre et qui enverra les messages en fonction de la configuration choisie. Ce wrapper permettra de centraliser la logique d'envoi des messages et de faciliter la maintenance du code. Le wrapper ne sera pas utilisé pour l'envoi de message de type *ESCAPE, qui seront toujours envoyés quel que soit le paramétrage.
+## Étapes à suivre
+1. Créer le wrapper CLLE QSNDPGMMSG.
+2. **Analyse du code existant** : Examiner le code actuel pour déterminer les chaînes d'appel de programmes et l'utilisation de la commande SNDPGMMSG. Le paramètre doit être transmis **si nécessaire** de proche en proche aux programmes de la chaîne d'appel qui exécutent la fonction SNDPGMMSG.
+3. **Modification des programmes** : Modifier les programmes existants pour intégrer le nouveau paramètre de configuration des types de message et susbstituer les appels à SNDPGMMSG par des appels à QSNDPGMMSG si MSGTYPE est différent de *ESCAPE.
+4. **Mise à jour du programme de compilation** : Mettre à jour le programme de compilation (SRCBLDC.CLP) pour inclure les modifications apportées aux programmes et s'assurer que les nouveaux paramètres sont correctement pris en compte lors de la compilation.
+5. **Documentation de la modification** : Documenter les changements apportés au code, y compris la logique d'envoi des messages en fonction de la configuration choisie et les instructions d'utilisation du nouveau paramètre de configuration des types de message.
+6. **Mise à jour de la documentation** : Mettre à jour la documentation du projet pour inclure des informations sur le nouveau paramètre de configuration des types de message et son utilisation.
