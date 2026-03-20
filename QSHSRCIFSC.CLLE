@@ -54,8 +54,8 @@
                           MBR(&SRCMBR)
              MONMSG     MSGID(CPF0000) EXEC(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Error +
-                          checking for source member' |> &SRCLIB |< +
-                          '/' |< &SRCFILE |< '(' |< &SRCMBR |< ')') +
+                          checking for source member' !> &SRCLIB !< +
+                          '/' !< &SRCFILE !< '(' !< &SRCMBR !< ')') +
                           MSGTYPE(*ESCAPE)
              ENDDO
 
@@ -69,9 +69,9 @@
 /* Build temp script file name                                      */
 /*----------------------------------------------------------------------------*/
              IF         COND(&IFSFILE *EQ *GENERATE) THEN(DO)
-             CHGVAR     VAR(&TMPSCRIPT) VALUE(&QSHTEMP |< '/' |< +
-                          &SRCMBR |< '_' |< &QDATE |< &QTIME |< '_' +
-                          |< &CURUSER |< '.sh')
+             CHGVAR     VAR(&TMPSCRIPT) VALUE(&QSHTEMP !< '/' !< +
+                          &SRCMBR !< '_' !< &QDATE !< &QTIME !< '_' +
+                          !< &CURUSER !< '.sh')
              ENDDO
              IF         COND(&IFSFILE *NE *GENERATE) THEN(DO)
              CHGVAR     VAR(&TMPSCRIPT) VALUE(&IFSFILE)
@@ -87,7 +87,7 @@
              IF         COND(&REPLACE *EQ *NO) THEN(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Source +
                           member not copied. IFS destination file' +
-                          |> &IFSFILE |> 'exists and replace is set +
+                          !> &IFSFILE !> 'exists and replace is set +
                           to *NO') MSGTYPE(*ESCAPE)
              ENDDO
              ENDDO
@@ -95,23 +95,23 @@
 /*----------------------------------------------------------------------------*/
 /* Copy source member script to IFS to run it                       */
 /*----------------------------------------------------------------------------*/
-             CPYTOSTMF  FROMMBR('/QSYS.LIB/' |< &SRCLIB |< '.LIB/' +
-                          |< &SRCFILE |< '.FILE/' |< &SRCMBR |< +
+             CPYTOSTMF  FROMMBR('/QSYS.LIB/' !< &SRCLIB !< '.LIB/' +
+                          !< &SRCFILE !< '.FILE/' !< &SRCMBR !< +
                           '.MBR') TOSTMF(&TMPSCRIPT) +
                           STMFOPT(*REPLACE) CVTDTA(*AUTO) +
                           STMFCCSID(*PCASCII) ENDLINFMT(*LF) +
                           AUT(*INDIR) STMFCODPAG(*STMF)
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Source +
-                          member' |> &SRCLIB |< '/' |< &SRCFILE |< +
-                          '.' |< &SRCMBR |> 'copied to IFS file' |> +
+                          member' !> &SRCLIB !< '/' !< &SRCFILE !< +
+                          '.' !< &SRCMBR !> 'copied to IFS file' !> +
                           &TMPSCRIPT) MSGTYPE(*COMP)
 
              RETURN
 
 ERRORS:
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Error +
-                          copying source  member' |> &SRCLIB |< '/' +
-                          |< &SRCFILE |< '.' |< &SRCMBR) +
+                          copying source  member' !> &SRCLIB !< '/' +
+                          !< &SRCFILE !< '.' !< &SRCMBR) +
                           MSGTYPE(*ESCAPE)
              ENDPGM

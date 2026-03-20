@@ -35,14 +35,14 @@
              IF         COND(&RTNERROR *NE 0) THEN(DO)
              CHGVAR     VAR(&RTNERRORC) VALUE(&RTNERROR)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('File' +
-                          |> &IFSFILE2 |> 'not found') MSGTYPE(*ESCAPE)
+                          !> &IFSFILE2 !> 'not found') MSGTYPE(*ESCAPE)
              ENDDO
 
 /* HANDLE NORMAL EXIT */
 
 /* IF ERRORS OCCUR DURING COPY, LOG ERROR */
              SNDPGMMSG  MSGID(CPF9897) MSGF(QCPFMSG) MSGDTA('File' +
-                          |> &IFSFILE2 |> 'was found') +
+                          !> &IFSFILE2 !> 'was found') +
                           MSGTYPE(*ESCAPE)
 
               RETURN     /* NORMAL END OF PROGRAM */
@@ -52,7 +52,7 @@
 /*****************************************************************/
  ERRORS:
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Errors +
-                          occurred while trying to access file' |> +
+                          occurred while trying to access file' !> +
                           &IFSFILE2) MSGTYPE(*ESCAPE)
 
              ENDPGM

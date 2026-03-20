@@ -35,11 +35,11 @@
              /* Send SYSOPR message if specified */
              IF         COND(&SNDOPRMSG *EQ *YES) THEN(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA(&CMDNAME +
-                          |< '-HTTP instance' |> &HTTPINST |> 'is +
+                          !< '-HTTP instance' !> &HTTPINST !> 'is +
                           not running') TOUSR(&TOUSR) MSGTYPE(*INFO)
              ENDDO
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('HTTP +
-                          instance' |> &HTTPINST |> 'is not +
+                          instance' !> &HTTPINST !> 'is not +
                           running') TOPGMQ(*PRV) MSGTYPE(*COMP)
              RETURN
              ENDDO
@@ -50,8 +50,8 @@
  LOOP:       DOWHILE    COND(&COUNT *LE &WAITCYCLES *AND &DONE *NE 1)
 
              /* Set job name filter */
-             CHGVAR     VAR(&FILTER) VALUE('JOBNAME LIKE ''' |< +
-                          &JOBNAME |< '''')
+             CHGVAR     VAR(&FILTER) VALUE('JOBNAME LIKE ''' !< +
+                          &JOBNAME !< '''')
 
              /* Are HTTP server jobs still active ? */
              QSHONI/QSHJOBACT QRYFILTER(&FILTER) +
@@ -67,11 +67,11 @@
 
              CHGVAR     VAR(&COUNT) VALUE(&COUNT + 1)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Current +
-                          wait cycle is' |> %CHAR(&COUNT)) +
+                          wait cycle is' !> %CHAR(&COUNT)) +
                           TOPGMQ(*SAME) MSGTYPE(*DIAG)
              IF         COND(&JOBTYPE *EQ '1') THEN(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Current +
-                          wait cycle is' |> %CHAR(&COUNT)) +
+                          wait cycle is' !> %CHAR(&COUNT)) +
                           TOPGMQ(*EXT) MSGTYPE(*STATUS)
              ENDDO
 
@@ -88,14 +88,14 @@
              /* Send SYSOPR message if specified */
              IF         COND(&SNDOPRMSG *EQ *YES) THEN(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA(&CMDNAME +
-                          |< '-HTTP instance' |> &HTTPINST |> 'may +
+                          !< '-HTTP instance' !> &HTTPINST !> 'may +
                           not have ended successfuly. Max wait +
                           count was exceeded. Chk act jobs') +
                           TOUSR(&TOUSR) MSGTYPE(*INFO)
              ENDDO
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('HTTP +
-                          instance' |> &HTTPINST |> 'may not have +
+                          instance' !> &HTTPINST !> 'may not have +
                           ended successfuly. Max wait count was +
                           exceeded. Chk act jobs') MSGTYPE(*ESCAPE)
              ENDDO
@@ -104,26 +104,26 @@ DONE:
              /* Send SYSOPR message if specified */
              IF         COND(&SNDOPRMSG *EQ *YES) THEN(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA(&CMDNAME |< '-HTTP instance' |> +
-                          &HTTPINST |> 'was ended successfully') +
+                          MSGDTA(&CMDNAME !< '-HTTP instance' !> +
+                          &HTTPINST !> 'was ended successfully') +
                           TOUSR(&TOUSR) MSGTYPE(*COMP)
              ENDDO
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('HTTP +
-                          instance' |> &HTTPINST |> 'was ended +
+                          instance' !> &HTTPINST !> 'was ended +
                           successfully') MSGTYPE(*COMP)
              RETURN
 
 ERRORS:
              /* Send SYSOPR message if specified */
              IF         COND(&SNDOPRMSG *EQ *YES) THEN(DO)
-             SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA(&CMDNAME |< '-Errors +
-                          occurred while ending HTTP instance' |> +
+             SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA(&CMDNAME !< '-Errors +
+                          occurred while ending HTTP instance' !> +
                           &HTTPINST) TOUSR(&TOUSR) MSGTYPE(*INFO)
              ENDDO
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Errors +
-                          occurred while ending HTTP instance' |> +
+                          occurred while ending HTTP instance' !> +
                           &HTTPINST) MSGTYPE(*ESCAPE)
 
              ENDPGM 

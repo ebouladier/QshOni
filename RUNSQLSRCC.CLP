@@ -59,8 +59,8 @@
                           MBR(&SRCMBR)
              MONMSG     MSGID(CPF0000) EXEC(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('SQL +
-                          Source member' |> &SQLSRCLIB |< '/' |< +
-                          &SQLSRCFILE |< '(' |< &SRCMBR |< ') was +
+                          Source member' !> &SQLSRCLIB !< '/' !< +
+                          &SQLSRCFILE !< '(' !< &SRCMBR !< ') was +
                           not found or you don''t have access. +
                           RUNSQLSRC action query cancelled') +
                           MSGTYPE(*ESCAPE)
@@ -68,8 +68,8 @@
 
              /* Drop diag message into joblog for SQL source */
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('INFO: +
-                          SQL Source member' |> &SQLSRCLIB |< '/' +
-                          |< &SQLSRCFILE |< '(' |< &SRCMBR |< ') is +
+                          SQL Source member' !> &SQLSRCLIB !< '/' +
+                          !< &SQLSRCFILE !< '(' !< &SRCMBR !< ') is +
                           being used to run query') TOPGMQ(*SAME) +
                           MSGTYPE(*DIAG)
 
@@ -223,8 +223,8 @@
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('SQL +
                           action query ran successfully. Source +
-                          member' |> &SQLSRCLIB |< '/' |< +
-                          &SQLSRCFILE |< '(' |< &SRCMBR |< ')') +
+                          member' !> &SQLSRCLIB !< '/' !< +
+                          &SQLSRCFILE !< '(' !< &SRCMBR !< ')') +
                           MSGTYPE(*COMP)
 
              RETURN

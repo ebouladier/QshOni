@@ -45,7 +45,7 @@
 /*----------------------------------------------------------------------------*/
 
              /* Build curl command line to pass to qshell */
-             CHGVAR     VAR(&CURLCMDLIN) VALUE('curl' |>  +
+             CHGVAR     VAR(&CURLCMDLIN) VALUE('curl' !>  +
                           &CMDLINE)
 
              /* Run the curl command via QSHEXEC */

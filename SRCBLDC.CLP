@@ -433,7 +433,7 @@
 
  /* Create and set data area for version                      */
              CRTDTAARA  DTAARA(&DESTLIB/VERSION) TYPE(*CHAR) LEN(30) +
-                          VALUE(&VERSION) TEXT(&DESTLIB |> 'version')
+                          VALUE(&VERSION) TEXT(&DESTLIB !> 'version')
              MONMSG     MSGID(CPF0000)
              CHGDTAARA  DTAARA(&DESTLIB/VERSION *ALL) VALUE(&VERSION)
 
@@ -471,7 +471,7 @@
              MONMSG     MSGID(CPF0000)
 
  /* Change library desc to match the version */
-             CHGLIB     LIB(QSHONI) TEXT('QShell on IBM i -' |> +
+             CHGLIB     LIB(QSHONI) TEXT('QShell on IBM i -' !> +
                           &VERSION)
 
  /* Make /tmp/qsh dir */

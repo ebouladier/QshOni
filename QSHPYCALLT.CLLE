@@ -34,25 +34,25 @@
 /* Output return parameter values to joglog messages        */
 /*----------------------------------------------------------*/
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN01:' |> &RETURN01)
+                          MSGDTA('RETURN01:' !> &RETURN01)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN02:' |> &RETURN02)
+                          MSGDTA('RETURN02:' !> &RETURN02)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN03:' |> &RETURN03)
+                          MSGDTA('RETURN03:' !> &RETURN03)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN04:' |> &RETURN04)
+                          MSGDTA('RETURN04:' !> &RETURN04)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN05:' |> &RETURN05)
+                          MSGDTA('RETURN05:' !> &RETURN05)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN06:' |> &RETURN06)
+                          MSGDTA('RETURN06:' !> &RETURN06)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN07:' |> &RETURN07)
+                          MSGDTA('RETURN07:' !> &RETURN07)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN08:' |> &RETURN08)
+                          MSGDTA('RETURN08:' !> &RETURN08)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN09:' |> &RETURN09)
+                          MSGDTA('RETURN09:' !> &RETURN09)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN10:' |> &RETURN10)
+                          MSGDTA('RETURN10:' !> &RETURN10)
 
              RETURN
 

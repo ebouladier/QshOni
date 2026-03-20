@@ -71,13 +71,13 @@
 
              /* Build output file name if special keywords used */
              IF         COND(&TOIFSFILE *EQ *DATETIME) THEN(DO)
-             CHGVAR     VAR(&TOIFSFILE) VALUE(&SAVFDIR |< '/' |< +
-                          &IFSPREFIX |< '_' |< &QDATE10 |< '_' |< +
-                          &QTIME |< '.savf')
+             CHGVAR     VAR(&TOIFSFILE) VALUE(&SAVFDIR !< '/' !< +
+                          &IFSPREFIX !< '_' !< &QDATE10 !< '_' !< +
+                          &QTIME !< '.savf')
              ENDDO
              IF         COND(&TOIFSFILE *EQ *DATE) THEN(DO)
-             CHGVAR     VAR(&TOIFSFILE) VALUE(&SAVFDIR |< '/' |< +
-                          &IFSPREFIX |< '_' |< &QDATE10 |< '.savf')
+             CHGVAR     VAR(&TOIFSFILE) VALUE(&SAVFDIR !< '/' !< +
+                          &IFSPREFIX !< '_' !< &QDATE10 !< '.savf')
              ENDDO
 
              /* Check for existing IFS file.*/
@@ -96,7 +96,7 @@
 
              IF         COND(&REPLACE *NE *YES) THEN(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('IFS +
-                          file' |> &TOIFSFILE |> 'already exists +
+                          file' !> &TOIFSFILE !> 'already exists +
                           and replace not selected. IFS object save +
                           cancelled') MSGTYPE(*ESCAPE)
              ENDDO
@@ -115,8 +115,8 @@
              /* Save message to screen as status msg if interactive */
              IF         COND(&JOBTYPE *EQ '1') THEN(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('IFS +
-                          objects' |> &OBJECTS |> 'being saved to +
-                          IFS file' |> &TOIFSFILE) TOPGMQ(*EXT) +
+                          objects' !> &OBJECTS !> 'being saved to +
+                          IFS file' !> &TOIFSFILE) TOPGMQ(*EXT) +
                           MSGTYPE(*STATUS)
              ENDDO
 
@@ -155,15 +155,15 @@
                           ALLOCSIZE(&ALLOCSIZE) ESCONERROR(*YES)
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('IFS +
-                          objects' |> &OBJECTS |> 'were saved to +
-                          IFS file' |> &TOIFSFILE |> 'Size:' |< +
-                          %CHAR(&SIZE) |> 'bytes') MSGTYPE(*COMP)
+                          objects' !> &OBJECTS !> 'were saved to +
+                          IFS file' !> &TOIFSFILE !> 'Size:' !< +
+                          %CHAR(&SIZE) !> 'bytes') MSGTYPE(*COMP)
              RETURN
 
 ERRORS:
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Errors +
-                          occurred saving IFS files ' |> &OBJECTS +
-                          |< 'to IFS file' |> &TOIFSFILE |> '. See +
+                          occurred saving IFS files ' !> &OBJECTS +
+                          !< 'to IFS file' !> &TOIFSFILE !> '. See +
                           the job log') MSGTYPE(*ESCAPE)
 
              ENDPGM

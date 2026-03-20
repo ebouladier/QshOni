@@ -109,23 +109,23 @@
                           MBR(&SRCMBR)
              MONMSG     MSGID(CPF0000) EXEC(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Error +
-                          checking for source member' |> &SRCLIB |< +
-                          '/' |< &SRCFILE |< '(' |< &SRCMBR |< ')') +
+                          checking for source member' !> &SRCLIB !< +
+                          '/' !< &SRCFILE !< '(' !< &SRCMBR !< ')') +
                           MSGTYPE(*ESCAPE)
              ENDDO
 
 /*----------------------------------------------------------------------------*/
 /* Build temp script file name                                      */
 /*----------------------------------------------------------------------------*/
-             CHGVAR     VAR(&TMPSCRIPT) VALUE(&QSHTEMP |< '/' |< +
-                          &SRCMBR |< '_' |< &QDATE |< &QTIME |< '_' +
-                          |< &CURUSER |< '.sh')
+             CHGVAR     VAR(&TMPSCRIPT) VALUE(&QSHTEMP !< '/' !< +
+                          &SRCMBR !< '_' !< &QDATE !< &QTIME !< '_' +
+                          !< &CURUSER !< '.sh')
 
 /*----------------------------------------------------------------------------*/
 /* Copy source member script to IFS to run it                       */
 /*----------------------------------------------------------------------------*/
-             CPYTOSTMF  FROMMBR('/QSYS.LIB/' |< &SRCLIB |< '.LIB/' +
-                          |< &SRCFILE |< '.FILE/' |< &SRCMBR |< +
+             CPYTOSTMF  FROMMBR('/QSYS.LIB/' !< &SRCLIB !< '.LIB/' +
+                          !< &SRCFILE !< '.FILE/' !< &SRCMBR !< +
                           '.MBR') TOSTMF(&TMPSCRIPT) +
                           STMFOPT(*REPLACE) CVTDTA(*AUTO) +
                           STMFCCSID(*PCASCII) ENDLINFMT(*LF) +
@@ -146,9 +146,9 @@
 /*----------------------------------------------------------------------------*/
 /* Build soft coded OUTFILE IFS style path in QTEMP - Added V1.0.16 */
 /*----------------------------------------------------------------------------*/
-             CHGVAR     VAR(&OUTFILPATH) VALUE('/QSYS.LIB/' |< &OLIB +
-                          |< '.LIB/' |< &OFILE |< '.FILE/' |< +
-                          &OFILE |< '.MBR')
+             CHGVAR     VAR(&OUTFILPATH) VALUE('/QSYS.LIB/' !< &OLIB +
+                          !< '.LIB/' !< &OFILE !< '.FILE/' !< +
+                          &OFILE !< '.MBR')
 
 /*----------------------------------------------------------------------------*/
 /* If copying results to IFS and IFS file is blank, bail out.                 */
@@ -181,7 +181,7 @@
              CHKOBJ     OBJ(QSYS/&OLIB) OBJTYPE(*LIB)
              MONMSG     MSGID(CPF0000) EXEC(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Output +
-                          library' |> &OLIB |> 'does not exist. +
+                          library' !> &OLIB !> 'does not exist. +
                           QSHEXEC command cancelled') TOPGMQ(*PRV) +
                           MSGTYPE(*ESCAPE)
              ENDDO
@@ -206,7 +206,7 @@
              CHKOBJ     OBJ(&OLIB/&OFILE) OBJTYPE(*FILE)
              MONMSG     MSGID(CPF0000) EXEC(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Output +
-                          file' |> &OLIB |< '/' |< &OFILE |> 'does +
+                          file' !> &OLIB !< '/' !< &OFILE !> 'does +
                           not exist. QSHEXEC command cancelled') +
                           TOPGMQ(*PRV) MSGTYPE(*ESCAPE)
              ENDDO
@@ -223,10 +223,10 @@
 /* BUILD PATH NAME FOR IFS STDOUT FILE */
 /*----------------------------------------------------------------------------*/
              RTVJOBA    JOB(&JOB) USER(&USER) NBR(&JOBNBR)
-             CHGVAR     VAR(&STDOUTIFS) VALUE(&QSHTEMP |< +
-                          '/STDOUTQSH-' |< &JOB |< '-' |< &USER +
-                          |< '-' |< &JOBNBR |< '-' |< &QDATE |< +
-                          &QTIME |< '.TXT')
+             CHGVAR     VAR(&STDOUTIFS) VALUE(&QSHTEMP !< +
+                          '/STDOUTQSH-' !< &JOB !< '-' !< &USER +
+                          !< '-' !< &JOBNBR !< '-' !< &QDATE !< +
+                          &QTIME !< '.TXT')
 /*----------------------------------------------------------------------------*/
 /* ERASE QSHELL CMD OUTPUT IF IT EXISTS */
 /*----------------------------------------------------------------------------*/
@@ -237,7 +237,7 @@
 /* SET THE IFS PATH TO STORE QSHELL OUTPUT FOR  */
 /* REVIEW IF NEEDED.                            */
 /*----------------------------------------------------------------------------*/
-             CHGVAR     VAR(&STDOUTFILE) VALUE('FILE=' |< &STDOUTIFS)
+             CHGVAR     VAR(&STDOUTFILE) VALUE('FILE=' !< &STDOUTIFS)
 
 /*----------------------------------------------------------------------------*/
 /* Set the PASE_FORK_JOBNAME env variable to set thread job names.   */
@@ -248,7 +248,7 @@
                           VALUE(&PASEJOBNAM) REPLACE(*YES)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
                           MSGDTA('Environment variable +
-                          PASE_FORK_JOBNAME is set to:' |> +
+                          PASE_FORK_JOBNAME is set to:' !> +
                           &PASEJOBNAM) TOPGMQ(*SAME) MSGTYPE(*DIAG)
              ENDDO
              IF         COND(&PASEJOBNAM *EQ *DEFAULT) THEN(DO)
@@ -281,7 +281,7 @@
 /*----------------------------------------------------------------------------*/
 /* BUILD THE FINAL QSH CALL = Temp script file + parms */
 /*----------------------------------------------------------------------------*/
-             CHGVAR     VAR(&CMD) VALUE(&TMPSCRIPT |> &CMDPARM)
+             CHGVAR     VAR(&CMD) VALUE(&TMPSCRIPT !> &CMDPARM)
 
              /* CALL THE QSH COMMAND LINE */
              IF         COND(&PROMPTCMD *EQ *YES) THEN(DO)
@@ -339,7 +339,7 @@ DONECOMP:
              /* Prevent endless loop if CPYTOSTMF fails */
              MONMSG     MSGID(CPF0000) EXEC(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Error +
-                          copying log to IFS file' |> &IFSFILE |> +
+                          copying log to IFS file' !> &IFSFILE !> +
                           '- QSHEXEC cancelled') MSGTYPE(*ESCAPE)
              ENDDO
              ENDDO
@@ -388,14 +388,14 @@ DONECOMP:
 
              IF         COND(&QSHRTN *NE 0) THEN(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('ERROR: +
-                          QShell error' |> &QSHRTNC |> 'occurred +
+                          QShell error' !> &QSHRTNC !> 'occurred +
                           while running command. Check +
                           the joblog') MSGTYPE(*ESCAPE)
              ENDDO
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('QShell +
                           command completed and logged to outfile' +
-                          |> &OLIB |< '/' |< &OFILE) MSGTYPE(*COMP)
+                          !> &OLIB !< '/' !< &OFILE) MSGTYPE(*COMP)
 
              RETURN
 
@@ -428,7 +428,7 @@ ERRORS:
              /* Prevent endless loop if CPYTOSTMF fails */
              MONMSG     MSGID(CPF0000) EXEC(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Error +
-                          copying log to IFS file' |> &IFSFILE |> +
+                          copying log to IFS file' !> &IFSFILE !> +
                           '- QSHEXEC cancelled') MSGTYPE(*ESCAPE)
              ENDDO
              ENDDO

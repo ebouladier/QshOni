@@ -36,8 +36,8 @@
 /*----------------------------------------------------------------------------*/
              CHGVAR     VAR(&SQL) VALUE('SELECT JOB_NAME FROM +
                           QSYS2.NETSTAT_JOB_INFO WHERE +
-                          CONNECTION_TYPE=' |< &QT |< &CONNTYPE |< +
-                          &QT |> 'AND LOCAL_PORT=' |< +
+                          CONNECTION_TYPE=' !< &QT !< &CONNTYPE !< +
+                          &QT !> 'AND LOCAL_PORT=' !< +
                           %CHAR(&LOCALPORT))
 
 /*----------------------------------------------------------------------------*/
@@ -55,7 +55,7 @@
 
              IF         COND(&SQLQRYCNT *EQ 0) THEN(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('No jobs +
-                          are active for port' |> +
+                          are active for port' !> +
                           %CHAR(&LOCALPORT)) MSGTYPE(*COMP)
              RETURN
              ENDDO
@@ -68,8 +68,8 @@
              MONMSG     MSGID(CPF0864) EXEC(GOTO CMDLBL(END1))
 
              /* Set ENDJOB command to run and get command length */
-             CHGVAR     VAR(&CMDLINE) VALUE('ENDJOB JOB(' |< +
-                          %SST(&JOB_NAME 3 26) |< ') OPTION(*IMMED)')
+             CHGVAR     VAR(&CMDLINE) VALUE('ENDJOB JOB(' !< +
+                          %SST(&JOB_NAME 3 26) !< ') OPTION(*IMMED)')
              /* Get the command length */
              RTVMSG     MSGID(CPF9898) MSGF(QCPFMSG) +
                           MSGDTA(&CMDLINE) MSGLEN(&CMDLEN5)
@@ -85,15 +85,15 @@
 END1:
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA(%CHAR(&SQLQRYCNT) |> 'Jobs ended +
-                          for port' |> %CHAR(&LOCALPORT)) +
+                          MSGDTA(%CHAR(&SQLQRYCNT) !> 'Jobs ended +
+                          for port' !> %CHAR(&LOCALPORT)) +
                           MSGTYPE(*COMP)
 
              RETURN
 ERRORS:
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Errors +
-                          occurred running TCP end port' |> +
-                          %CHAR(&LOCALPORT) |> 'check. Most likely +
+                          occurred running TCP end port' !> +
+                          %CHAR(&LOCALPORT) !> 'check. Most likely +
                           the selected port is not active') +
                           MSGTYPE(*ESCAPE)
 

@@ -21,7 +21,7 @@
 /*----------------------------------------------------------------------------*/
 /* Call start nginx via QSHEXEC */
 /*----------------------------------------------------------------------------*/
-             CHGVAR     VAR(&CMD) VALUE(&NGINXBIN |> '-c' |> +
+             CHGVAR     VAR(&CMD) VALUE(&NGINXBIN !> '-c' !> +
                           &NGINXCONF)
 
              QSHONI/QSHEXEC CMDLINE(&CMD) DSPSTDOUT(&DSPSTDOUT) +

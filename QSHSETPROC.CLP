@@ -29,7 +29,7 @@
              RTVUSRPRF  USRPRF(&USER) RTNUSRPRF(&RTNUSERID)
              MONMSG     MSGID(CPF0000) EXEC(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('User +
-                          profile' |> &USER |> 'may not exist or +
+                          profile' !> &USER !> 'may not exist or +
                           you cannot access it. Profile copy +
                           cancelled') MSGTYPE(*ESCAPE)
              ENDDO
@@ -37,10 +37,10 @@
 /* Set user info for user home dir */
 /* Currently: /home/USERID assumed for home dir path */
              CHGVAR     VAR(&USERLIB) VALUE(&USER)
-             CHGVAR     VAR(&HOMEDIR) VALUE('/home/' |< &USER)
-             CHGVAR     VAR(&PROFILE) VALUE(&HOMEDIR |< '/.profile')
-             CHGVAR     VAR(&BASHRC) VALUE(&HOMEDIR |< '/.bashrc')
-             CHGVAR     VAR(&BASHPROF) VALUE(&HOMEDIR |< +
+             CHGVAR     VAR(&HOMEDIR) VALUE('/home/' !< &USER)
+             CHGVAR     VAR(&PROFILE) VALUE(&HOMEDIR !< '/.profile')
+             CHGVAR     VAR(&BASHRC) VALUE(&HOMEDIR !< '/.bashrc')
+             CHGVAR     VAR(&BASHPROF) VALUE(&HOMEDIR !< +
                           '/.bash_profile')
 
 /* Create home dir for new user if not found */
@@ -69,7 +69,7 @@
              MONMSG     MSGID(CPF9897) EXEC(DO)
              IF         COND(&REPLACE *EQ *NO) THEN(SNDPGMMSG +
                           MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA(&PROFILE |> 'file already exists +
+                          MSGDTA(&PROFILE !> 'file already exists +
                           and replace is *NO. Profile copy +
                           cancelled') MSGTYPE(*ESCAPE))
              ENDDO
@@ -92,7 +92,7 @@
                           OBJAUT(*ALL) SUBTREE(*NONE)
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA(&PROFILE +
-                          |> 'file was copied/created') MSGTYPE(*DIAG)
+                          !> 'file was copied/created') MSGTYPE(*DIAG)
 
              ENDDO /* Creating .profile ? */
 
@@ -108,7 +108,7 @@
              MONMSG     MSGID(CPF9897) EXEC(DO)
              IF         COND(&REPLACE *EQ *NO) THEN(SNDPGMMSG +
                           MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA(&BASHPROF|> 'file already exists +
+                          MSGDTA(&BASHPROF!> 'file already exists +
                           and replace is *NO. Profile copy +
                           cancelled') MSGTYPE(*ESCAPE))
              ENDDO
@@ -131,7 +131,7 @@
                           OBJAUT(*NONE)
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA(&BASHPROF +
-                          |> 'file was copied/created') MSGTYPE(*DIAG)
+                          !> 'file was copied/created') MSGTYPE(*DIAG)
 
              ENDDO /* Creating .bash_profile ? */
 
@@ -147,7 +147,7 @@
              MONMSG     MSGID(CPF9897) EXEC(DO)
              IF         COND(&REPLACE *EQ *NO) THEN(SNDPGMMSG +
                           MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA(&BASHRC |> 'file already exists +
+                          MSGDTA(&BASHRC !> 'file already exists +
                           and replace is *NO. Profile copy +
                           cancelled') MSGTYPE(*ESCAPE))
              ENDDO
@@ -170,7 +170,7 @@
                           OBJAUT(*NONE)
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA(&BASHRC +
-                          |> 'file was copied/created') MSGTYPE(*DIAG)
+                          !> 'file was copied/created') MSGTYPE(*DIAG)
 
              ENDDO /* Creating .bashrc ? */
 
@@ -178,7 +178,7 @@
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
                           MSGDTA('QShell/PASE profile files were +
-                          created successfully for user' |> &USER) +
+                          created successfully for user' !> &USER) +
                           MSGTYPE(*COMP)
 
              RETURN
@@ -186,5 +186,5 @@
 ERRORS:
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Errors +
                           occurred while creating QShell/PASE profile +
-                          files for user.' |> &USER |> 'Check +
+                          files for user.' !> &USER !> 'Check +
                           joblog') MSGTYPE(*ESCAPE)

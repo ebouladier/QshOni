@@ -23,8 +23,8 @@
 /*----------------------------------------------------------------------------*/
              CHGVAR     VAR(&SQL) VALUE('SELECT * FROM +
                           QSYS2.NETSTAT_INFO WHERE +
-                          CONNECTION_TYPE=' |< &QT |< &CONNTYPE |< +
-                          &QT |> 'AND LOCAL_PORT=' |< +
+                          CONNECTION_TYPE=' !< &QT !< &CONNTYPE !< +
+                          &QT !> 'AND LOCAL_PORT=' !< +
                           %CHAR(&LOCALPORT))
 
 /*----------------------------------------------------------------------------*/
@@ -40,15 +40,15 @@
                           EMPTYERROR(*YES)
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Port' +
-                          |> %CHAR(&LOCALPORT) |> 'appears to be +
-                          active on connection type' |> &CONNTYPE) +
+                          !> %CHAR(&LOCALPORT) !> 'appears to be +
+                          active on connection type' !> &CONNTYPE) +
                           MSGTYPE(*COMP)
 
              RETURN
 ERRORS:
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Errors +
-                          occurred running TCP port' |> +
-                          %CHAR(&LOCALPORT) |> 'check. Most likely +
+                          occurred running TCP port' !> +
+                          %CHAR(&LOCALPORT) !> 'check. Most likely +
                           the selected port is not active') +
                           MSGTYPE(*ESCAPE)
 

@@ -108,129 +108,129 @@
 /*----------------------------------------------------------------------------*/
              CHGVAR     VAR(&CT) VALUE(%BINARY(&ARGS 1 2))
              IF         COND(&CT > 0) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGDLM |< %SST(&ARGS 3 200) |< &ARGDLM))
+                          VALUE(&ARGDLM !< %SST(&ARGS 3 200) !< &ARGDLM))
              IF         COND(&CT > 1) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 203 +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 203 +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 2) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 403 +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 403 +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 3) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 603 +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 603 +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 4) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 803 +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 803 +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 5) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 1003   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 1003   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 6) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 1203   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 1203   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 7) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 1403   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 1403   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 8) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 1603   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 1603   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 9) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 1803   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 1803   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 10) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 2003   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 2003   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 11) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 2203   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 2203   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 12) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 2403   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 2403   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 13) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 2603   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 2603   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 14) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 2803   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 2803   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 15) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 3003   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 3003   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 16) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 3203   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 3203   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 17) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 3403   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 3403   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 18) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 3603   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 3603   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 19) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 3803   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 3803   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 20) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 4003   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 4003   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 21) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 4203   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 4203   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 22) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 4403   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 4403   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 23) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 4603   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 4603   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 24) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 4803   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 4803   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 25) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 5003   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 5003   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 26) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 5203   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 5203   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 27) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 5403   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 5403   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 28) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 5603   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 5603   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 29) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 5803   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 5803   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 30) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 6003   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 6003   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 31) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 6203   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 6203   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 32) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 6403   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 6403   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 33) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 6603   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 6603   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 34) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 6803   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 6803   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 35) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 7003   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 7003   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 36) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 7203   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 7203   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 37) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 7403   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 7403   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 38) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 7603   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 7603   +
+                          200) !< &ARGDLM))
              IF         COND(&CT > 39) THEN(CHGVAR VAR(&ARGS2) +
-                          VALUE(&ARGS2 |> &ARGDLM || %SST(&ARGS 7803   +
-                          200) |< &ARGDLM))
+                          VALUE(&ARGS2 !> &ARGDLM !! %SST(&ARGS 7803   +
+                          200) !< &ARGDLM))
 
 /*----------------------------------------------------------------------------*/
 /* Set PHP executable */
 /*----------------------------------------------------------------------------*/
- CHGVAR     VAR(&PHPEXE) VALUE(&PHPPATH |< &PHPPATHSEP |< &PHPCMD)
+ CHGVAR     VAR(&PHPEXE) VALUE(&PHPPATH !< &PHPPATHSEP !< &PHPCMD)
 
 /*----------------------------------------------------------------------------*/
 /* Make sure QSHONITMP library and IFS directory created */
@@ -282,8 +282,8 @@
              /* concatenate php dir with script file name         */
              IF         COND(&PHPSCRDIR *NE ' ' *AND &SCRIPTSTR *NE +
                           '/') THEN(DO)
-             CHGVAR     VAR(&SCRIPTFILE) VALUE(&PHPSCRDIR |< '/' +
-                          |< &SCRIPTFILE)
+             CHGVAR     VAR(&SCRIPTFILE) VALUE(&PHPSCRDIR !< '/' +
+                          !< &SCRIPTFILE)
              ENDDO
 
 /*----------------------------------------------------------------------------*/
@@ -297,7 +297,7 @@
              /* DOES NOT EXIST. BAIL OUT */
              MONMSG     MSGID(CPF9898) EXEC(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('PHP +
-                          script file' |> &SCRIPTFILE |> 'does not +
+                          script file' !> &SCRIPTFILE !> 'does not +
                           exist') MSGTYPE(*ESCAPE)
              ENDDO
 
@@ -307,15 +307,15 @@
              /* Build PHP command line by calling PHP with */
              /* a qualified script name plus parm arguments*/
              IF         COND(&CHGSCRDIR *NE *YES) THEN(DO)
-             CHGVAR     VAR(&CMD) VALUE(&PHPEXE |> &SCRIPTFULL |> +
+             CHGVAR     VAR(&CMD) VALUE(&PHPEXE !> &SCRIPTFULL !> +
                           &ARGS2)
              ENDDO
              /* Build PHP command line by changing to script dir */
              /* and then calling script with just script name plus */
              /* arguments. */
              IF         COND(&CHGSCRDIR *EQ *YES) THEN(DO)
-             CHGVAR     VAR(&CMD) VALUE('cd' |> &PHPSCRDIR |< ';' |> +
-                          &PHPEXE |> &SCRIPTFILE |> &ARGS2)
+             CHGVAR     VAR(&CMD) VALUE('cd' !> &PHPSCRDIR !< ';' !> +
+                          &PHPEXE !> &SCRIPTFILE !> &ARGS2)
              ENDDO
 
 /*----------------------------------------------------------------------------*/
@@ -352,7 +352,7 @@
 
  NORMAL:
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('PHP +
-                          script' |> &SCRIPTFILE |> 'completed +
+                          script' !> &SCRIPTFILE !> 'completed +
                           successfully with no errors') MSGTYPE(*COMP)
              RETURN
 
@@ -362,6 +362,6 @@
  ERRORS:
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('PHP +
-                          script' |> &SCRIPTFILE |> 'failed. See +
+                          script' !> &SCRIPTFILE !> 'failed. See +
                           the joblog or stdout log') MSGTYPE(*ESCAPE)
              ENDPGM

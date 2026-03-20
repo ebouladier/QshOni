@@ -66,9 +66,9 @@
                           MSGDTA('PGBACKDIR data area is empty. +
                           Please set a value') MSGTYPE(*ESCAPE))
 
-             CHGVAR     VAR(&OUTPUTFILE) VALUE(&PGBACKDIR |< '/' |< +
-                          &DATABASE |< '-' |< &QDATE10 |< '-' |< +
-                          &QTIME |< '.tar')
+             CHGVAR     VAR(&OUTPUTFILE) VALUE(&PGBACKDIR !< '/' !< +
+                          &DATABASE !< '-' !< &QDATE10 !< '-' !< +
+                          &QTIME !< '.tar')
              ENDDO
 
              /* Check for *DBTEMPDATE passed as output file */
@@ -80,20 +80,20 @@
                           MSGDTA('PGBACKDIR data area is empty. +
                           Please set a value') MSGTYPE(*ESCAPE))
 
-             CHGVAR     VAR(&OUTPUTFILE) VALUE(&PGBACKDIR |< '/' |< +
-                          &DATABASE |< '-' |< &QDATE10 |< '.tar')
+             CHGVAR     VAR(&OUTPUTFILE) VALUE(&PGBACKDIR !< '/' !< +
+                          &DATABASE !< '-' !< &QDATE10 !< '.tar')
 
              ENDDO
 
 /* Build pg_dump command line for selected database dump */
              CHGVAR     VAR(&CMDLINE) +
-                          VALUE('/QOpenSys/pkgs/bin/pg_dump -F' |> +
-                          &FORMAT |> '-d' |> &DATABASE |> &OPTIONS +
-                          |> '>' |> &OUTPUTFILE)
+                          VALUE('/QOpenSys/pkgs/bin/pg_dump -F' !> +
+                          &FORMAT !> '-d' !> &DATABASE !> &OPTIONS +
+                          !> '>' !> &OUTPUTFILE)
 
 /* Build tar verify command line for selected database dump */
              CHGVAR     VAR(&CMDLINEVFY) VALUE('/QOpenSys/pkgs/bin/tar +
-                          -tvf' |> &OUTPUTFILE)
+                          -tvf' !> &OUTPUTFILE)
 
 /* Make sure Postgres dump file does not exist */
              QSHONI/QSHIFSCHK FILNAM(&OUTPUTFILE)
@@ -107,7 +107,7 @@
              ENDDO
              IF         COND(&REPLACE *NE *YES) THEN(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Output +
-                          file' |> &OUTPUTFILE |> 'already exists +
+                          file' !> &OUTPUTFILE !> 'already exists +
                           and replace not selected. Postgres +
                           pg_dump cancelled') MSGTYPE(*ESCAPE)
              ENDDO
@@ -143,8 +143,8 @@
                           PRTTXT('Verify pg_dump tar file')
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('Postgres database' |> &DATABASE +
-                          |> 'was dumped to' |> &OUTPUTFILE |> 'and +
+                          MSGDTA('Postgres database' !> &DATABASE +
+                          !> 'was dumped to' !> &OUTPUTFILE !> 'and +
                           verified successfully') MSGTYPE(*COMP)
 
              RETURN

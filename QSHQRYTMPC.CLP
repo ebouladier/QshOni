@@ -92,8 +92,8 @@
 /* Drop the temp table if it exists                */
 /* Catch error. Create will fail if already found. */
 /*----------------------------------------------------------------------------*/
-             CHGVAR     VAR(&SQL) VALUE('DROP TABLE' |> &TEMPLIB |< +
-                          '/' |< &TEMPFILE)
+             CHGVAR     VAR(&SQL) VALUE('DROP TABLE' !> &TEMPLIB !< +
+                          '/' !< &TEMPFILE)
 
              IF         COND(&PROMPT *EQ *YES) THEN(DO)
              ? QSYS/RUNSQL   ??SQL(&SQL) ??COMMIT(*NONE) ??NAMING(*SYS)
@@ -108,9 +108,9 @@
 /*----------------------------------------------------------------------------*/
 /* Create temp table from another table using SQL */
 /*----------------------------------------------------------------------------*/
-             CHGVAR     VAR(&SQL) VALUE('create table' |> &TEMPLIB +
-                          |< &SQLQUAL |< &TEMPFILE |> 'as (' |< +
-                          &SQLQUERY |< ') with data')
+             CHGVAR     VAR(&SQL) VALUE('create table' !> &TEMPLIB +
+                          !< &SQLQUAL !< &TEMPFILE !> 'as (' !< +
+                          &SQLQUERY !< ') with data')
 
              IF         COND(&PROMPT *EQ *YES) THEN(DO)
              ? QSYS/RUNSQL   ??SQL(&SQL) ??COMMIT(*NONE) ??NAMING(&NAMING)
@@ -152,9 +152,9 @@
              ENDDO
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Temp +
-                          file' |> &TEMPLIB |< '/' |< &TEMPFILE |> +
-                          'was created from SQL query.' |> +
-                          &RECORDSC |> 'records') MSGTYPE(&COMPMSGTYP)
+                          file' !> &TEMPLIB !< '/' !< &TEMPFILE !> +
+                          'was created from SQL query.' !> +
+                          &RECORDSC !> 'records') MSGTYPE(&COMPMSGTYP)
 
              RETURN
 ERRORS:

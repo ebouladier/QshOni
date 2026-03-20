@@ -47,16 +47,16 @@
                           MBR(&SRCMBR)
              MONMSG     MSGID(CPF0000) EXEC(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('SQL +
-                          Source member' |> &SQLSRCLIB |< '/' |< +
-                          &SQLSRCFILE |< '(' |< &SRCMBR |< ') was +
+                          Source member' !> &SQLSRCLIB !< '/' !< +
+                          &SQLSRCFILE !< '(' !< &SRCMBR !< ') was +
                           not found or you don''t have access. +
                           Query cancelled') MSGTYPE(*ESCAPE)
              ENDDO
 
              /* Drop diag message into joblog for SQL source */
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('INFO: +
-                          SQL Source member' |> &SQLSRCLIB |< '/' +
-                          |< &SQLSRCFILE |< '(' |< &SRCMBR |< ') is +
+                          SQL Source member' !> &SQLSRCLIB !< '/' +
+                          !< &SQLSRCFILE !< '(' !< &SRCMBR !< ') is +
                           being used to run query') TOPGMQ(*SAME) +
                           MSGTYPE(*DIAG)
 
@@ -94,7 +94,7 @@
              /* IFS file not found. bail out */
              MONMSG     MSGID(CPF9898) EXEC(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('SQL +
-                          IFS file' |> &SQLIFSFILE |> 'not found. +
+                          IFS file' !> &SQLIFSFILE !> 'not found. +
                           Query cancelled') MSGTYPE(*ESCAPE)
              ENDDO
              /* IFS file found */
@@ -103,8 +103,8 @@
 
              /* Drop diag message into joblog for SQL source */
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('INFO: SQL IFS file' |> &SQLIFSFILE +
-                          |> 'is being used to run query') +
+                          MSGDTA('INFO: SQL IFS file' !> &SQLIFSFILE +
+                          !> 'is being used to run query') +
                           TOPGMQ(*SAME) MSGTYPE(*DIAG)
 
              /* Delete temporary source file */
@@ -184,8 +184,8 @@
 
              IF         COND(&SQLQUERY *EQ ' ') THEN(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('SQL +
-                          Source member' |> &SQLSRCLIB |< '/' |< +
-                          &SQLSRCFILE |< '(' |< &SRCMBR |< ') was +
+                          Source member' !> &SQLSRCLIB !< '/' !< +
+                          &SQLSRCFILE !< '(' !< &SRCMBR !< ') was +
                           empty or has blank lines. Query +
                           cancelled') MSGTYPE(*ESCAPE)
              ENDDO
@@ -244,8 +244,8 @@
 /* Drop the temp table if it exists                */
 /* Catch error. Create will fail if already found. */
 /*----------------------------------------------------------------------------*/
-             CHGVAR     VAR(&SQL) VALUE('DROP TABLE' |> &TEMPLIB |< +
-                          '/' |< &TEMPFILE)
+             CHGVAR     VAR(&SQL) VALUE('DROP TABLE' !> &TEMPLIB !< +
+                          '/' !< &TEMPFILE)
 
              IF         COND(&PROMPT *EQ *YES) THEN(DO)
              ? QSYS/RUNSQL   ??SQL(&SQL) ??COMMIT(*NONE) ??NAMING(*SYS)
@@ -260,9 +260,9 @@
 /*----------------------------------------------------------------------------*/
 /* Create temp table from another table using SQL */
 /*----------------------------------------------------------------------------*/
-             CHGVAR     VAR(&SQL) VALUE('create table' |> &TEMPLIB +
-                          |< &SQLQUAL |< &TEMPFILE |> 'as (' |< +
-                          &SQLQUERY |< ') with data')
+             CHGVAR     VAR(&SQL) VALUE('create table' !> &TEMPLIB +
+                          !< &SQLQUAL !< &TEMPFILE !> 'as (' !< +
+                          &SQLQUERY !< ') with data')
 
              IF         COND(&PROMPT *EQ *YES) THEN(DO)
              ? QSYS/RUNSQL   ??SQL(&SQL) ??COMMIT(*NONE) NAMING(&NAMING)
@@ -313,9 +313,9 @@
              ENDDO
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Temp +
-                          file' |> &TEMPLIB |< '/' |< &TEMPFILE |> +
-                          'was created from SQL query.' |> +
-                          &RECORDSC |> 'records') MSGTYPE(&COMPMSGTYP)
+                          file' !> &TEMPLIB !< '/' !< &TEMPFILE !> +
+                          'was created from SQL query.' !> +
+                          &RECORDSC !> 'records') MSGTYPE(&COMPMSGTYP)
 
              RETURN
 ERRORS:

@@ -76,15 +76,15 @@
              /* with JSON formatting export statement */
              IF         COND(&OUTPUTFMT *EQ 'json') THEN(DO)
              CHGVAR     VAR(&CURLCMDLIN) VALUE('export +
-                          DB2UTIL_JSON_CONTAINER=' |< &JSONFMT |< +
-                          '; db2util -o' |> &OUTPUTFMT |> '"' |< +
-                          &SQL |< '" >>' |> &OUTPUTFILE)
+                          DB2UTIL_JSON_CONTAINER=' !< &JSONFMT !< +
+                          '; db2util -o' !> &OUTPUTFMT !> '"' !< +
+                          &SQL !< '" >>' !> &OUTPUTFILE)
              ENDDO
              /* Build db2util command line to pass to qshell or bash  */
              /* with JSON formatting export statement */
              IF         COND(&OUTPUTFMT *NE 'json') THEN(DO)
-             CHGVAR     VAR(&CURLCMDLIN) VALUE('db2util -o' |> +
-                          &OUTPUTFMT |> '"' |< &SQL |< '" >>' |> +
+             CHGVAR     VAR(&CURLCMDLIN) VALUE('db2util -o' !> +
+                          &OUTPUTFMT !> '"' !< &SQL !< '" >>' !> +
                           &OUTPUTFILE)
              ENDDO
 
@@ -108,7 +108,7 @@
              ENDDO
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('db2util +
-                          command completed to file' |> +
+                          command completed to file' !> +
                           &OUTPUTFILE) MSGTYPE(*COMP)
 
              RETURN

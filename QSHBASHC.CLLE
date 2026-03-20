@@ -67,12 +67,12 @@
 
              /* Command line delimiter specified */
              IF         COND(&CMDLINEDLM *NE ' ') THEN(DO)
-             CHGVAR     VAR(&BSHCMDLINE) VALUE('bash -c' |> +
-                          &CMDLINEDLM |< &CMDLINE |< &CMDLINEDLM)
+             CHGVAR     VAR(&BSHCMDLINE) VALUE('bash -c' !> +
+                          &CMDLINEDLM !< &CMDLINE !< &CMDLINEDLM)
              ENDDO
              /* No command line delimiter specified */
              IF         COND(&CMDLINEDLM *EQ ' ') THEN(DO)
-             CHGVAR     VAR(&BSHCMDLINE) VALUE('bash -c' |> +
+             CHGVAR     VAR(&BSHCMDLINE) VALUE('bash -c' !> +
                                          &CMDLINE)
              ENDDO
 

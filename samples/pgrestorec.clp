@@ -19,8 +19,8 @@
 
 /* Build pg_restore command line for selected database restore */
              CHGVAR     VAR(&CMDLINE) +
-                          VALUE('/QOpenSys/pkgs/bin/pg_restore' |> +
-                          &OPTIONS |> '-d' |> &DATABASE |> ' ' |> +
+                          VALUE('/QOpenSys/pkgs/bin/pg_restore' !> +
+                          &OPTIONS !> '-d' !> &DATABASE !> ' ' !> +
                           &INPUTFILE)
 
 /* Make sure Postgres dump file exists for restore */
@@ -28,7 +28,7 @@
              /* Not found. Bail out */
              MONMSG     MSGID(CPF9898) EXEC(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Input +
-                          Postgres backup file' |> &INPUTFILE |> +
+                          Postgres backup file' !> &INPUTFILE !> +
                           'not found. Postgres pg_restore +
                           cancelled') MSGTYPE(*ESCAPE)
              ENDDO
@@ -52,8 +52,8 @@
              ENDDO
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('Postgres database' |> &DATABASE +
-                          |> 'was restored from' |> &INPUTFILE |> +
+                          MSGDTA('Postgres database' !> &DATABASE +
+                          !> 'was restored from' !> &INPUTFILE !> +
                           'successfully') MSGTYPE(*COMP)
 
              RETURN

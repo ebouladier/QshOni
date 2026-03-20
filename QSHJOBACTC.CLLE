@@ -72,7 +72,7 @@
              ENDDO
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('No +
-                          matching jobs found for filter:' |> +
+                          matching jobs found for filter:' !> +
                           &QRYFILTER) TOPGMQ(*PRV) MSGTYPE(&MSGTYPE)
              ENDDO
 
@@ -85,9 +85,9 @@
              /* Bail if max active jobs exceeded */
              IF         COND(&RECORDS *GT &MAXJOBFND) THEN(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Max +
-                          jobs found were' |> %CHAR(&RECORDS) |> +
+                          jobs found were' !> %CHAR(&RECORDS) !> +
                           'and this exceeded the max job count +
-                          tolerance value of' |> %CHAR(&MAXJOBFND)) +
+                          tolerance value of' !> %CHAR(&MAXJOBFND)) +
                           TOPGMQ(*PRV) MSGTYPE(*ESCAPE)
              ENDDO
              ENDDO
@@ -101,9 +101,9 @@
              /* Bail if expected number of jobs not matching */
              IF         COND(&RECORDS *NE &EXPJOBFND) THEN(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('Expected active jobs were' |> +
-                          %CHAR(&EXPJOBFND) |> '. Actual jobs found +
-                          were' |> %CHAR(&RECORDS)) TOPGMQ(*PRV) +
+                          MSGDTA('Expected active jobs were' !> +
+                          %CHAR(&EXPJOBFND) !> '. Actual jobs found +
+                          were' !> %CHAR(&RECORDS)) TOPGMQ(*PRV) +
                           MSGTYPE(*ESCAPE)
              ENDDO
              ENDDO
@@ -114,8 +114,8 @@
              IF         COND(&RECORDS *GT 0) THEN(DO)
              CHGDTAARA  DTAARA(QTEMP/JOBACTCNT *ALL) VALUE(&RECORDS)
              SNDPGMMSG  MSGID(CPF9897) MSGF(QCPFMSG) +
-                          MSGDTA(%CHAR(&RECORDS) |> 'matching jobs +
-                          found for filter:' |> &QRYFILTER) +
+                          MSGDTA(%CHAR(&RECORDS) !> 'matching jobs +
+                          found for filter:' !> &QRYFILTER) +
                           TOPGMQ(*PRV) MSGTYPE(*COMP)
              ENDDO
 

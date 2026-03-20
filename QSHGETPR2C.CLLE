@@ -86,34 +86,34 @@
              /* Write diagnostic messages to joblog */
              IF         COND(&WRTDIAGMSG *EQ *YES) THEN(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN01:' |> &RTNPARM01) +
+                          MSGDTA('RETURN01:' !> &RTNPARM01) +
                           TOPGMQ(*SAME) MSGTYPE(*DIAG)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN02:' |> &RTNPARM02) +
+                          MSGDTA('RETURN02:' !> &RTNPARM02) +
                           TOPGMQ(*SAME) MSGTYPE(*DIAG)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN03:' |> &RTNPARM03) +
+                          MSGDTA('RETURN03:' !> &RTNPARM03) +
                           TOPGMQ(*SAME) MSGTYPE(*DIAG)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN04:' |> &RTNPARM04) +
+                          MSGDTA('RETURN04:' !> &RTNPARM04) +
                           TOPGMQ(*SAME) MSGTYPE(*DIAG)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN05:' |> &RTNPARM05) +
+                          MSGDTA('RETURN05:' !> &RTNPARM05) +
                           TOPGMQ(*SAME) MSGTYPE(*DIAG)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN06:' |> &RTNPARM06) +
+                          MSGDTA('RETURN06:' !> &RTNPARM06) +
                           TOPGMQ(*SAME) MSGTYPE(*DIAG)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN07:' |> &RTNPARM07) +
+                          MSGDTA('RETURN07:' !> &RTNPARM07) +
                           TOPGMQ(*SAME) MSGTYPE(*DIAG)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN08:' |> &RTNPARM08) +
+                          MSGDTA('RETURN08:' !> &RTNPARM08) +
                           TOPGMQ(*SAME) MSGTYPE(*DIAG)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN09:' |> &RTNPARM09) +
+                          MSGDTA('RETURN09:' !> &RTNPARM09) +
                           TOPGMQ(*SAME) MSGTYPE(*DIAG)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) +
-                          MSGDTA('RETURN10:' |> &RTNPARM10) +
+                          MSGDTA('RETURN10:' !> &RTNPARM10) +
                           TOPGMQ(*SAME) MSGTYPE(*DIAG)
              ENDDO
 

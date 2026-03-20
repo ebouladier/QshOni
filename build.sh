@@ -7,7 +7,7 @@
 SRCLIB="QSHONI"
 SRCLIBTEXT="QShell on IBM i"
 SRCFILE="SOURCE"
-SRCCCSID="37"
+SRCCCSID="1147"
 dashes="---------------------------------------------------------------------------"
 
 function cpy_member

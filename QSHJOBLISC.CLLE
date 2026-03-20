@@ -62,11 +62,11 @@
 /*----------------------------------------------------------------------------*/
              IF         COND(&PROMPT *EQ *YES) THEN(DO)
              ?          QSHQRYTMP ??SQL('SELECT * FROM +
-                          QTEMP/TMPJOBLS01 WHERE' |> &JOBFILTER) +
+                          QTEMP/TMPJOBLS01 WHERE' !> &JOBFILTER) +
                           OUTFILE(&TEMPLIB/&TEMPFILE) EMPTYERROR(*NO)
              ENDDO
              IF         COND(&PROMPT *NE *YES) THEN(DO)
-             QSHQRYTMP  SQL('SELECT * FROM QTEMP/TMPJOBLS01 WHERE' |> +
+             QSHQRYTMP  SQL('SELECT * FROM QTEMP/TMPJOBLS01 WHERE' !> +
                     &JOBFILTER) OUTFILE(&TEMPLIB/&TEMPFILE) +
                           EMPTYERROR(*NO)
              ENDDO
@@ -78,9 +78,9 @@
              CHGDTAARA  DTAARA(QTEMP/JOBLISTCNT *ALL) VALUE(&RECORDS)
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Output +
-                          file' |> &TEMPLIB |< '/' |< &TEMPFILE |> +
-                          'was created from job list.' |> +
-                          %CHAR(&RECORDS) |> 'entries retrieved') +
+                          file' !> &TEMPLIB !< '/' !< &TEMPFILE !> +
+                          'was created from job list.' !> +
+                          %CHAR(&RECORDS) !> 'entries retrieved') +
                           MSGTYPE(*COMP)
 
              RETURN

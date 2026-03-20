@@ -19,7 +19,7 @@
              /* File not found */
              MONMSG     MSGID(CPF9898) EXEC(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('IFS +
-                          file' |> &IFSFILE |> 'does not exist.') +
+                          file' !> &IFSFILE !> 'does not exist.') +
                           MSGTYPE(*ESCAPE)
              ENDDO
              /* File found */
@@ -54,7 +54,7 @@
 
              IF         COND(&RTNFOUND *EQ '1') THEN(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Value' +
-                          |> &RTNVAL |> 'was found in IFS file' |> +
+                          !> &RTNVAL !> 'was found in IFS file' !> +
                           &IFSFILE) MSGTYPE(*COMP)
              ENDDO
              IF         COND(&RTNFOUND *EQ '0') THEN(DO)

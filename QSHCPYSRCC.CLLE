@@ -87,8 +87,8 @@
                           MBR(&SRCMBR)
              MONMSG     MSGID(CPF0000) EXEC(DO)
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Error +
-                          checking for source member' |> &SRCLIB |< +
-                          '/' |< &SRCFILE |< '(' |< &SRCMBR |< ')') +
+                          checking for source member' !> &SRCLIB !< +
+                          '/' !< &SRCFILE !< '(' !< &SRCMBR !< ')') +
                           MSGTYPE(*ESCAPE)
              ENDDO
 
@@ -106,9 +106,9 @@
 /* Build temp script file name                                      */
 /*----------------------------------------------------------------------------*/
              IF         COND(&TOIFSFILE *EQ *GENERATE) THEN(DO)
-             CHGVAR     VAR(&TMPSCRIPT) VALUE(&QSHTEMP |< '/' |< +
-                          &SRCMBR |< '_' |< &QDATE |< &QTIME |< +
-                          &CURUSER |< '.' |< &SRCTYPTMP)
+             CHGVAR     VAR(&TMPSCRIPT) VALUE(&QSHTEMP !< '/' !< +
+                          &SRCMBR !< '_' !< &QDATE !< &QTIME !< +
+                          &CURUSER !< '.' !< &SRCTYPTMP)
              ENDDO
              IF         COND(&TOIFSFILE *NE *GENERATE) THEN(DO)
              CHGVAR     VAR(&TMPSCRIPT) VALUE(&TOIFSFILE)
@@ -121,8 +121,8 @@
              CHGDTAARA  DTAARA(QTEMP/TMPSRCFILE *ALL) +
                           VALUE(&TMPSCRIPT)
 
-             CPYTOSTMF  FROMMBR('/QSYS.LIB/' |< &SRCLIB |< '.LIB/' +
-                          |< &SRCFILE |< '.FILE/' |< &SRCMBR |< +
+             CPYTOSTMF  FROMMBR('/QSYS.LIB/' !< &SRCLIB !< '.LIB/' +
+                          !< &SRCFILE !< '.FILE/' !< &SRCMBR !< +
                           '.MBR') TOSTMF(&TMPSCRIPT) +
                           STMFOPT(&IFSOPT) CVTDTA(*AUTO) +
                           STMFCCSID(*PCASCII) ENDLINFMT(*LF) +
@@ -130,16 +130,16 @@
 
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Source +
-                          member' |> &SRCLIB |< '/' |< &SRCFILE |< +
-                          '(' |< &SRCMBR |< ') was copied to IFS +
-                          file' |> &TMPSCRIPT) MSGTYPE(*COMP)
+                          member' !> &SRCLIB !< '/' !< &SRCFILE !< +
+                          '(' !< &SRCMBR !< ') was copied to IFS +
+                          file' !> &TMPSCRIPT) MSGTYPE(*COMP)
 
              RETURN
 
 ERRORS:
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('Source +
-                          member' |> &SRCLIB |< '/' |< &SRCFILE |< +
-                          '(' |< &SRCMBR |< ') copy to IFS file +
+                          member' !> &SRCLIB !< '/' !< &SRCFILE !< +
+                          '(' !< &SRCMBR !< ') copy to IFS file +
                           failed. Check the job log') MSGTYPE(*ESCAPE)
 
  ENDPGM:

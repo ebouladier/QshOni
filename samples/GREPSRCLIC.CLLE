@@ -61,14 +61,14 @@
              /* Build grep command line to pass to qshell or bash  */
              /* Make sure to use /usr/bin/grep which is QShell */
              CHGVAR     VAR(&CURLCMDLIN) VALUE('/usr/bin/grep -i -n +
-                          "' |< &SEARCHFOR |< '"' |> '/QSYS.LIB/' +
-                          |< &SRCLIBRARY |< '.LIB/' |< &SRCFILE |< +
-                          '.FILE/' |< &SRCMEMBER |< '.MBR')
+                          "' !< &SEARCHFOR !< '"' !> '/QSYS.LIB/' +
+                          !< &SRCLIBRARY !< '.LIB/' !< &SRCFILE !< +
+                          '.FILE/' !< &SRCMEMBER !< '.MBR')
 
              /* Set search value in print text field */
              /* in case we print.                    */
              IF         COND(&PRTTXT *EQ ' ') THEN(DO)
-             CHGVAR     VAR(&PRTTXT) VALUE('Search for:' |< +
+             CHGVAR     VAR(&PRTTXT) VALUE('Search for:' !< +
                           &SEARCHFOR)
              ENDDO
 
@@ -107,7 +107,7 @@
              ENDDO
 
              SNDPGMMSG  MSGID(CPF9898) MSGF(QCPFMSG) MSGDTA('grep +
-                          command completed searching for:' |> +
+                          command completed searching for:' !> +
                           &SEARCHFOR) MSGTYPE(*COMP)
 
              RETURN
